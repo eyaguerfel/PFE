@@ -7,7 +7,17 @@ use App\Models\Role;
 
 class RoleController extends Controller
 {
-    public function create (Request $request)
+    public function allRole(){
+        
+        $roles=Role::get();
+        return view ('Roles.listrole',compact('roles'));
+    }
+
+    public function create(){
+        return view ('Roles.createrole');
+    }
+
+    public function store (Request $request)
     {
         //return $request;
         $role= new Role();
@@ -17,9 +27,9 @@ class RoleController extends Controller
         return 'Role created Successfully ';
     }
 
-    public function delete ($id)
+    public function delete (Role $role)
     {
-        $role= Role::find($id);
+        //$role= Role::find($id);
         $role-> delete();
         return 'Role Deleted Successfully';
     }

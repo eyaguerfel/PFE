@@ -29,6 +29,10 @@
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
+         <!--   <div class="image">
+      <label><h4>Add image</h4></label>
+      <input type="file" class="form-control" required name="picture">
+    </div>-->
 
             <!-- Password -->
             <div class="mt-4">
