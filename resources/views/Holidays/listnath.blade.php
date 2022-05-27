@@ -1,40 +1,3 @@
-<!--<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-</head>
-<body>
-<center> <h1>All Users</h1> </canter>
-<div class="container mt-3">
-  <table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Display Name</th>
-      <th scope="col">Description</th>
-    </tr>
-  </thead>
-
-  @foreach($roles as $role)
-  <tbody>
-
-    <td>{{$role->display_name}}</td>
-    <td>{{$role->description}}</td>
-    
-    </tbody>
-    
-    @endforeach
-
-</table>
-  </table>
-</div>
-
-</body>
-</html>
--->
-
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -63,13 +26,16 @@
         </header><!-- /header -->
         <!-- Header-->
 
-        <div class="breadcrumbs">
+
+
+
+ <div class="breadcrumbs">
             <div class="breadcrumbs-inner">
                 <div class="row m-0">
                     <div class="col-sm-4">
                         <div class="page-header float-left">
                             <div class="page-title">
-                                <h1>Roles</h1>
+                                <h1>Dashboard</h1>
                             </div>
                         </div>
                     </div>
@@ -77,8 +43,8 @@
                         <div class="page-header float-right">
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
-                                    <li><a href="{{route('rolecreate')}}">Add role</a></li>
-                                    <li class="active">List of role</li>
+                                    <li><a href="{{route('createnatholidays')}}">Add national holiday</a></li>
+                                    <li class="active">List of holidays</li>
                                 </ol>
                             </div>
                         </div>
@@ -100,28 +66,33 @@
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                            <th>Display Name</th>
-                                            <th>Description</th>
-                                            <th>Delete</th>
+                                       
+                                           <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Date</th>
+                                            <th>Actions</th>
 
                                             </tr>
                                     </thead>
                                     
                                     <tbody>
-                                    @foreach($roles as $role)
+                                    @foreach($nationalholiday as $nh)
                                       <tr>
-                                      <td>{{$role->display_name}}</td>
-                                      <td>{{$role->discription}}</td>
-                                      <td>
-                                          <a href="#" class="ti-trash" onclick="if(confirm('voulez vous vraiment supprimer ce role'))
-                                          {document.getElementById('form-{{$role->id}}').submit()}"></a>
+                                      <td>{{$nh->id}}</td>
+                                      <td>{{$nh->name}}</td>
+                                      <td>{{$nh->date}}</td>
+                                      <td style="text-align:center">
+                                        <a href="{{route('natedit',['nationalholiday'=>$nh->id])}}" class="ti-pencil" ></a>
+                                          <a href="#" class="ti-trash" onclick="if(confirm('voulez vous vraiment supprimer cet utilisateur?'))
+                                          {document.getElementById('form-{{$nh->id}}').submit()}"></a>
 
-                                          <form id="form-{{$role->id}}" action="{{route('roledelete',['role'=>$role->id])}}" method="post">
+                                          <form id="form-{{$nh->id}}" action="{{route('natdelet',['nationalholiday'=>$nh->id])}}" method="post">
                                               @csrf
                                               <input type="hidden" name="_method" value="delete">
                                             </form>
-                                         </td>
 
+                                         
+                                      </td>
                                       </tr>
                                       @endforeach
                                        
@@ -189,4 +160,3 @@
 
 </body>
 </html>
-

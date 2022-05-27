@@ -13,10 +13,13 @@ class UserController extends Controller
     public function allUser(){
         
         $users=User::get();
-        foreach($users as $u)
+        foreach($users as $user)
         {
-            $role=Role::find($u->role_id);
-            $u->role=$role->display_name;
+            $role=Role::find($user->role_id);
+            if (isset($role))
+                $user->role=$role->display_name;  
+            else
+                $user->role="";
         }
         return view ('users.users',compact('users'));
     }
@@ -31,13 +34,13 @@ class UserController extends Controller
          $user->save();*/
  
          $role=Role::all();
-         return View('users.createuser')->with('role',$role);
+         return View('users.createuser')->with ('role',$role);
  
      }
 
      public function edit(User $user){
-        $role1=Role::all();
-        return View('users.updateuser',compact('user','role1'));}
+        $role=Role::all();
+        return View('users.updateuser',compact('user','role'));}
     //METHOD
    
     

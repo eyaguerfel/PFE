@@ -5,21 +5,21 @@
                         <a href="index.html"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
                     </li>
                     <li class="menu-title">UI elements</li><!-- /.menu-title -->
-                    <li class="menu-item-has-children dropdown">
+                  <!--  <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Roles</a>
-                        <ul class="sub-menu children dropdown-menu">                           
-                        <li><a href ="{{route('rolelist')}}">List</a></li>
-                        <li><a href ="{{route('rolecreate')}}">Create</a></li>
-
-                        </ul>
-                    </li>
-                    <li class="menu-item-has-children dropdown">
+                        <ul class="sub-menu children dropdown-menu">      -->                     
+                        <li><a href ="{{route('rolelist')}}"><i class="menu-icon fa fa-cogs"></i>Roles</a></li>
+                        <!--<li><a href ="{{route('rolecreate')}}">Create</a></li>-->
+                     <!--   </ul>
+                    </li>-->
+                       
+                  <!--  <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Users</a>
-                        <ul class="sub-menu children dropdown-menu">
-                            <li><a href ="{{route('userpage')}}">List</a></li>
-                            <li><a href ="{{route('usercreate')}}">Create</a></li>
-                        </ul>
-                    </li>
+                        <ul class="sub-menu children dropdown-menu">-->
+                            <li><a href ="{{route('userpage')}}"><i class="menu-icon fa fa-table"></i>Users</a></li>
+                            <!--<li><a href ="{{route('usercreate')}}">Create</a></li>-->
+                      <!--  </ul>
+                    </li>-->
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Forms</a>
                         <ul class="sub-menu children dropdown-menu">
@@ -28,13 +28,13 @@
                         </ul>
                     </li>
 
-                    <li class="menu-title">Icons</li><!-- /.menu-title -->
+                    <li class="menu-title">Holidays</li><!-- /.menu-title -->
 
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Icons</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-tasks"></i>Holidays</a>
                         <ul class="sub-menu children dropdown-menu">
-                            <li><i class="menu-icon fa fa-fort-awesome"></i><a href="font-fontawesome.html">Font Awesome</a></li>
-                            <li><i class="menu-icon ti-themify-logo"></i><a href="font-themify.html">Themefy Icons</a></li>
+                            <li><a href="{{route('listnatholidays')}}">National Holidays</a></li>
+                            <li><a href="{{route('listrelholidays')}}">Religious Holidays</a></li>
                         </ul>
                     </li>
                     <li>

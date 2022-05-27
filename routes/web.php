@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\NationalHolidayController;
+use App\Http\Controllers\ReligiousHolidayController;
 use App\Http\Controllers\ImageUploadController;
 
 /*
@@ -29,6 +31,22 @@ Route:: delete("/users/{user}",[UserController::class,"delete"])->name('userdele
 Route::get("/roles", [RoleController::class,"allRole"])->name('rolelist');
 Route::get("/roles/create",[RoleController::class,"create"])->name('rolecreate');
 Route:: delete("/roles/{role}",[RoleController::class,"delete"])->name('roledelete');
+
+//Holidays
+Route::get("/national", [NationalHolidayController::class,"allNationalHoliday"])->name('listnatholidays');
+Route::get("/national/create",[NationalHolidayController::class,"create"])->name('createnatholidays');
+Route:: post("/national/create",[NationalHolidayController::class,"store"])->name('storenatholidays');
+Route:: get("/national/{nationalholiday}",[NationalHolidayController::class,"edit"])->name('natedit');
+Route:: put("/national/{nationalholiday}",[NationalHolidayController::class,"update"])->name('natupdate');
+Route:: delete("/national/{nationalholiday}",[NationalHolidayController::class,"delete"])->name('natdelet');
+
+
+Route::get("/religioush", [ReligiousHolidayController::class,"allReligiousHoliday"])->name('listrelholidays');
+Route::get("/religioush/create",[ReligiousHolidayController::class,"create"])->name('createrelholidays');
+Route:: post("/religioush/create",[ReligiousHolidayController::class,"store"])->name('storerelholidays');
+Route:: get("/religioush/{religiousholiday}",[ReligiousHolidayController::class,"edit"])->name('reledit');
+Route:: put("/religioush/{religiousholiday}",[ReligiousHolidayController::class,"update"])->name('relupdate');
+Route:: delete("/religioush/{religiousholiday}",[ReligiousHolidayController::class,"delete"])->name('reldelete');
 
 //For adding an image
 Route::get('/add-image',[ImageUploadController::class,'addImage'])->name('images.add');
