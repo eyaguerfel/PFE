@@ -52,7 +52,7 @@
         @csrf
         <input type="hidden" name="_method" value="put">
                         <div class="card">
-                            <div class="card-header"><strong>Update User</strong></div>
+                            <div class="card-header"><strong>Update Profile</strong></div>
                             <div class="card-body card-block">
                                 <div class="form-group">
                                   <label for="first_name" class=" form-control-label">First Name</label><input type="text" id="first_name" name="first_name" placeholder="First Name" class="form-control" value="{{$user->first_name}}"></div>

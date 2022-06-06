@@ -5,9 +5,18 @@ use App\Models\User;
 use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
 
 class UserController extends Controller
 {
+    public static function get_connected_user()
+        {
+            $user = Auth::user();
+            $id = Auth::id();
+            $user= User::find($id);
+            return $user;
+        }
 
     //VIEW
     public function allUser(){
@@ -93,6 +102,8 @@ class UserController extends Controller
         $user->save();
         return "updated";
     }
+
+    
     //$this->validate($request, [
       //  'first_name'=> 'required',
        // 'last_name'=> 'required',

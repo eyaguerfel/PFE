@@ -18,7 +18,11 @@ use App\Http\Controllers\ImageUploadController;
 |
 */
 Route::get('/', function () {
-    return view('welcome');
+    $user=App\Http\Controllers\UserController::get_connected_user();
+        if (isset($user))
+            return view('dashboard1');
+        else
+            return view('auth.login');
 });
 Route:: get("/users",[UserController::class,"allUser"])->name('userpage');
 Route:: get("/users/create",[UserController::class,"create"])->name('usercreate');
@@ -57,7 +61,6 @@ Route::post('/store-image',[ImageUploadController::class,'storeImage'])
 
 //For showing an image
 Route::get('/view-image',[ImageUploadController::class,'viewImage'])->name('images.view');
-
 
 
 Route::get('/dashboard', function () {

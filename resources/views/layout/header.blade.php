@@ -1,7 +1,7 @@
 <header id="header" class="header">
             <div class="top-left">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="./"><img src="{{URL::asset('images/logo.png')}}" alt="Logo"></a>
+                    <a class="navbar-brand" href="./"><img src="{{URL::asset('images/logoo.png')}}" alt="Logo" style="width:80px; height:40px"></a>
                     <a class="navbar-brand hidden" href="./"><img src="{{URL::asset('images/logo2.png')}}" alt="Logo"></a>
                     <a id="menuToggle" class="menutoggle"><i class="fa fa-bars"></i></a>
                 </div>
@@ -81,14 +81,18 @@
                             </div>
                         </div>
                     </div>
-
+                    <?php
+                        $user=App\Http\Controllers\UserController::get_connected_user();
+                        $picture=$user->picture;
+                    ?>
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img class="user-avatar rounded-circle" src="{{URL::asset('images/admin.jpg')}}" alt="User Avatar">
+                            <img class="user-avatar rounded-circle" style="width:30px; height:40px" src="{{URL::asset('public/user/'.$picture)}}" alt="User Avatar">
                         </a>
+                    
    
                         <div class="user-menu dropdown-menu">
-                            <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
+                            <a class="nav-link" href="{{route('useredit',['user'=>$user->id])}}"><i class="fa fa- user"></i>My Profile</a>
 
                             <a class="nav-link" href="#"><i class="fa fa- user"></i>Notifications <span class="count">13</span></a>
 
