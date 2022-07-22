@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
@@ -25,27 +27,26 @@
             @include('layout.header')
         </header><!-- /header -->
         <!-- Header-->
-
-
-
-
- <div class="breadcrumbs">
-            <div class="breadcrumbs-inner">
-                <div class="row m-0">
-                    <div class="col-sm-4">
-                        <div class="page-header float-left">
-                            <div class="page-title">
-                                <h1>National Holidays</h1>
+        <?php
+            
+            $user=App\Http\Controllers\UserController::get_connected_user();
+            $projects=App\Http\Controllers\ProjectController::get_project($user->id);
+    
+        ?>
+    <div class="breadcrumbs">
+        <div class="breadcrumbs-inner">
+         <div class="row m-0">
+            <div class="col-sm-4">
+            <div class="page-header float-left">
+            <div class="page-title">
+                <h1>Projects</h1>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-8">
                         <div class="page-header float-right">
                             <div class="page-title">
-                                <ol class="breadcrumb text-right">
-                                    <li><a href="{{route('createnatholidays')}}">Add national holiday</a></li>
-                                    <li class="active">List of holidays</li>
-                                </ol>
+                                
                             </div>
                         </div>
                     </div>
@@ -53,59 +54,45 @@
             </div>
         </div>
 
-        <div class="content">
-            <div class="animated fadeIn">
-                <div class="row">
-
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title">Data Table</strong>
-                            </div>
-                            <div class="card-body">
-                                <table id="bootstrap-data-table" class="table table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                       
-                                           <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Date</th>
-                                            <th>Actions</th>
-
-                                            </tr>
-                                    </thead>
+    <div class="content">
+        <div class="animated fadeIn">
+            <div class="row">
+            <div class="col-md-12">
+            <div class="card">
+            <div class="card-header">
+                <strong class="card-title">Data Table</strong>
+        </div>
+            
+            <div class="card-body">
+                <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                     <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                        </tr>
+                    </thead>
                                     
-                                    <tbody>
-                                    @foreach($nationalholiday as $nh)
-                                      <tr>
-                                      <td>{{$nh->id}}</td>
-                                      <td>{{$nh->name}}</td>
-                                      <td>{{$nh->date}}</td>
-                                      <td style="text-align:center">
-                                        <a href="{{route('natedit',['nationalholiday'=>$nh->id])}}" class="ti-pencil" ></a>
-                                          <a href="#" class="ti-trash" onclick="if(confirm('voulez vous vraiment supprimer cet utilisateur?'))
-                                          {document.getElementById('form-{{$nh->id}}').submit()}"></a>
-
-                                          <form id="form-{{$nh->id}}" action="{{route('natdelet',['nationalholiday'=>$nh->id])}}" method="post">
-                                              @csrf
-                                              <input type="hidden" name="_method" value="delete">
-                                            </form>
-
-                                         
-                                      </td>
-                                      </tr>
-                                      @endforeach
-                                       
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                    <tbody>
+                    @foreach($projects as $project)
+                        <tr>
+                            <td>{{$project->id}}</td>
+                            <td>{{$project->name}}</td>
+                            <td>{{$project->start_date}}</td>
+                            <td>{{$project->end_date}}</td>
+                        </tr>
+                    @endforeach     
+                     </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
 
-                </div>
-            </div><!-- .animated -->
-        </div><!-- .content -->
+</div>
+</div><!-- .animated -->
+ </div><!-- .content -->
 
 
         <div class="clearfix"></div>

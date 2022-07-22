@@ -51,5 +51,8 @@ class NationalHolidayController extends Controller
         return 'updated Successfully ';
     }
 
-    
+    public function get_national_h()
+    {
+        return NationalHolidays::all('id','name','date',);
+    }
 }

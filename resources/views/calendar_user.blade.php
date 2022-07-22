@@ -38,7 +38,7 @@
                     @include('layout.todoandchat')
                     <!-- /To Do and Live Chat -->
                     <!-- Calender Chart Weather  -->
-                    @include('layout.calendar')
+                    @include('layout.my_calender')
 
                     <!-- /#add-category -->
                 </div>

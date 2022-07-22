@@ -143,10 +143,10 @@ button{
     <form action="{{ route('login') }}" method="POST">
         @csrf
 
-        <h3>Login Here</h3>
+        <h3>Welcome</h3>
 
         <label for="email">Email</label>
-        <x-input type="email" placeholder="Email or Phone" id="email" class="block mt-1 w-full" name="email" :value="old('email')" required autofocus />
+        <x-input type="email" placeholder="Email " id="email" class="block mt-1 w-full" name="email" :value="old('email')" required autofocus />
 
         <label for="password">Password</label>       
         <x-input type="password" placeholder="Password" id="password" class="block mt-1 w-full" name="password" value="__('Password')" required autocomplete="current-password" />

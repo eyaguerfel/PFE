@@ -1,5 +1,10 @@
+
+
 <!doctype html>
- <html class="no-js" lang=""> 
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
 <head>
    @include('layout.head_for_data_table')
 
@@ -23,16 +28,13 @@
         </header><!-- /header -->
         <!-- Header-->
 
-
-
-
- <div class="breadcrumbs">
+        <div class="breadcrumbs">
             <div class="breadcrumbs-inner">
                 <div class="row m-0">
                     <div class="col-sm-4">
                         <div class="page-header float-left">
                             <div class="page-title">
-                                <h1>Religious Holidays</h1>
+                                <h1>Projects</h1>
                             </div>
                         </div>
                     </div>
@@ -40,8 +42,8 @@
                         <div class="page-header float-right">
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
-                                    <li><a href="{{route('createrelholidays')}}">Add religious holiday</a></li>
-                                    <li class="active">List of holidays</li>
+                                    <li><a href="{{route('createproj')}}">Add Project</a></li>
+                                    <li class="active">List of projects</li>
                                 </ol>
                             </div>
                         </div>
@@ -50,62 +52,56 @@
             </div>
         </div>
 
-        <div class="content">
-            <div class="animated fadeIn">
-                <div class="row">
-
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-header">
-                                <strong class="card-title">Data Table</strong>
-                            </div>
-                            <div class="card-body">
-                                <table id="bootstrap-data-table" class="table table-striped table-bordered">
-                                    <thead>
-                                        <tr>
-                                       
-                                           <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Start date</th>
-                                            <th>End date</th>
-                                            <th>Actions</th>
-
-                                            </tr>
-                                    </thead>
+    <div class="content">
+        <div class="animated fadeIn">
+            <div class="row">
+            <div class="col-md-12">
+            <div class="card">
+            <div class="card-header">
+                <strong class="card-title">Data Table</strong>
+        </div>
+            
+            <div class="card-body">
+                <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                     <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
                                     
-                                    <tbody>
-                                    @foreach($religiousholiday as $rh)
-                                      <tr>
-                                      <td>{{$rh->id}}</td>
-                                      <td>{{$rh->name}}</td>
-                                      <td>{{$rh->start_date}}</td>
-                                      <td>{{$rh->end_date}}</td>
-
-                                      <td style="text-align:center">
-                                        <a href="{{route('reledit',['religiousholiday'=>$rh->id])}}" class="ti-pencil" ></a>
-                                          <a href="#" class="ti-trash" onclick="if(confirm('voulez vous vraiment supprimer cet utilisateur?'))
-                                          {document.getElementById('form-{{$rh->id}}').submit()}"></a>
-
-                                          <form id="form-{{$rh->id}}" action="{{route('reldelete',['religiousholiday'=>$rh->id])}}" method="post">
-                                              @csrf
-                                              <input type="hidden" name="_method" value="delete">
-                                            </form>
-
-                                         
-                                      </td>
-                                      </tr>
-                                      @endforeach
+                    <tbody>
+                        @foreach($projects as $project)
+                        <tr>
+                            <td>{{$project->id}}</td>
+                            <td>{{$project->name}}</td>
+                            <td>{{$project->start_date}}</td>
+                            <td>{{$project->end_date}}</td>
+                            <td style="text-align:center">
+                            <a href="{{route('projectedit',['project'=>$project->id])}}" class="ti-pencil" ></a>
+                            <a href="#" class="ti-trash" onclick="if(confirm('voulez vous vraiment supprimer ce projet?'))
+                              {document.getElementById('form-{{$project->id}}').submit()}"></a>
+                                <form id="form-{{$project->id}}" action="{{route('deleteproject',['project'=>$project->id])}}" method="post">
+                                    @csrf
+                                        <input type="hidden" name="_method" value="delete">
+                                </form>
+                            </td>
+                        </tr>
+                        @endforeach
                                        
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
+                     </tbody>
+            </table>
+        </div>
+     </div>
+    </div>
 
 
-                </div>
-            </div><!-- .animated -->
-        </div><!-- .content -->
+</div>
+</div><!-- .animated -->
+ </div><!-- .content -->
 
 
         <div class="clearfix"></div>

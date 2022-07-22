@@ -23,6 +23,20 @@ Route::post('/user/create', 'App\Http\Controllers\UserController@create',);
 Route::get('/user/find/{id}', 'App\Http\Controllers\UserController@findById',);
 Route::delete('/user/delete/{id}', 'App\Http\Controllers\UserController@delete',);
 
+Route::get('/data', 'ProjectController@index');
+Route::resource('projects', 'ProjectController');
+Route::post('/project/create', 'App\Http\Controllers\ProjectController@create',);
+Route::put('/project/update/{id}', 'App\Http\Controllers\ProjectController@update',);
+Route::delete('/project/delete/{id}', 'App\Http\Controllers\ProjectController@delete',);
+Route::get('/project/get_project_sd','App\Http\Controllers\ProjectController@get_all_projects_start_date',);
+Route::get('/project/get_project_ed','App\Http\Controllers\ProjectController@get_all_projects_end_date',);
+Route::get('/project/proj_h', 'App\Http\Controllers\ProjectController@proj_holidays',);
+Route::get('/relholidays/get_rel','App\Http\Controllers\ReligiousHolidayController@get_religious_h',);
+Route::get('/natholidays/get_nat','App\Http\Controllers\NationalHolidayController@get_national_h',);
+
+Route::get('/project/get_proj','App\Http\Controllers\ProjectController@get_project',);
+
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 

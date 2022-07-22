@@ -1,5 +1,10 @@
+
+
 <!doctype html>
- <html class="no-js" lang=""> 
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
 <head>
    @include('layout.head_for_data_table')
 
@@ -23,16 +28,13 @@
         </header><!-- /header -->
         <!-- Header-->
 
-
-
-
- <div class="breadcrumbs">
+        <div class="breadcrumbs">
             <div class="breadcrumbs-inner">
                 <div class="row m-0">
                     <div class="col-sm-4">
                         <div class="page-header float-left">
                             <div class="page-title">
-                                <h1>Religious Holidays</h1>
+                                <h1>Tasks</h1>
                             </div>
                         </div>
                     </div>
@@ -40,8 +42,8 @@
                         <div class="page-header float-right">
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
-                                    <li><a href="{{route('createrelholidays')}}">Add religious holiday</a></li>
-                                    <li class="active">List of holidays</li>
+                                    <li><a href="{{route('createtask')}}">Add task</a></li>
+                                    <li class="active">List of tasks</li>
                                 </ol>
                             </div>
                         </div>
@@ -63,36 +65,41 @@
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                     <thead>
                                         <tr>
-                                       
-                                           <th>ID</th>
+                                            <th>ID</th>
                                             <th>Name</th>
-                                            <th>Start date</th>
-                                            <th>End date</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                            <th>User</th>
+                                            <th>Project</th>
                                             <th>Actions</th>
 
                                             </tr>
                                     </thead>
                                     
                                     <tbody>
-                                    @foreach($religiousholiday as $rh)
+                                    @foreach($tasks as $task)
                                       <tr>
-                                      <td>{{$rh->id}}</td>
-                                      <td>{{$rh->name}}</td>
-                                      <td>{{$rh->start_date}}</td>
-                                      <td>{{$rh->end_date}}</td>
+                                      <td>{{$task->id}}</td>
+                                      <td>{{$task->name}}</td>
+                                      <td>{{$task->start_date}}</td>
+                                      <td>{{$task->end_date}}</td>
+                                      <td>{{$task->user}}</td>
+                                      <td>{{$task->project}}</td>
 
                                       <td style="text-align:center">
-                                        <a href="{{route('reledit',['religiousholiday'=>$rh->id])}}" class="ti-pencil" ></a>
-                                          <a href="#" class="ti-trash" onclick="if(confirm('voulez vous vraiment supprimer cet utilisateur?'))
-                                          {document.getElementById('form-{{$rh->id}}').submit()}"></a>
+                                          <a href="{{route('taskedit',['task'=>$task->id])}}" class="ti-pencil" ></a>
+                                          <a href="#" class="ti-trash" onclick="if(confirm('voulez vous vraiment supprimer cette tache?'))
+                                          {document.getElementById('form-{{$task->id}}').submit()}"></a>
 
-                                          <form id="form-{{$rh->id}}" action="{{route('reldelete',['religiousholiday'=>$rh->id])}}" method="post">
+                                          <form id="form-{{$task->id}}" action="{{route('deletetask',['task'=>$task->id])}}" method="post">
                                               @csrf
                                               <input type="hidden" name="_method" value="delete">
                                             </form>
 
                                          
                                       </td>
+
+
                                       </tr>
                                       @endforeach
                                        

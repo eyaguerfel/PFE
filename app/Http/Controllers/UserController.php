@@ -48,6 +48,7 @@ class UserController extends Controller
      }
 
      public function edit(User $user){
+        
         $role=Role::all();
         return View('users.updateuser',compact('user','role'));}
     //METHOD
@@ -58,6 +59,7 @@ class UserController extends Controller
         $user=new User();
         $user->first_name= $request->input('first_name');
         $user->last_name= $request->input('last_name');
+        $user->role_id= $request->input('role_id');
         if($request->file('picture')){
             $file= $request->file('picture');
             $filename= date('YmdHi').$file->getClientOriginalName();
@@ -80,11 +82,12 @@ class UserController extends Controller
     }
 
     public function update (Request $request, User $user)
-    {
+    {   //return $request;
         //return $user->id;
         $user = User::find($user->id);
         $user->first_name= $request->first_name;
         $user->last_name= $request->last_name;
+        $user->role_id=$request->role_id;
         $user->email= $request->email;
 
         if((isset($request->password))OR ($request->password !=""))

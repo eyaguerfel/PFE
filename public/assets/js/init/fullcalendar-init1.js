@@ -9,7 +9,7 @@ function testFunction (){
         this.$body = $("body")
         this.$modal = $('#event-modal'),
         this.$event = ('#external-events div.external-event'),
-        this.$calendar = $('#calendar'),
+        this.$calendar = $('#calendar1'),
         this.$saveCategoryBtn = $('.save-category'),
         this.$categoryForm = $('#add-category form'),
         this.$extEvents = $('#external-events'),

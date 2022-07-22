@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 use App\Models\ReligiousHolidays;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class ReligiousHolidayController extends Controller
 {
+
+   
     public function allReligiousHoliday(){
         
         $religiousholiday=ReligiousHolidays::get();
@@ -47,4 +52,8 @@ class ReligiousHolidayController extends Controller
         return 'updated Successfully ';
     }
 
+    public function get_religious_h()
+    {
+        return ReligiousHolidays::all('id','name','start_date','end_date');
+    }
 }

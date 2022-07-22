@@ -39,18 +39,17 @@
         <!-- Content -->
         @include('layout.script')
 
-        <form action="{{route('rolecreate')}}" method="POST">
+        <form action="{{route('projectedit',['project'=>$project->id])}}" method="POST">
         @csrf
-                        <div class="card">
-                            <div class="card-header"><strong>Create Role</strong></div>
-                            <div class="card-body card-block">
-                                <div class="form-group"><label for="display_name" class=" form-control-label">Display Name</label><input type="text" id="display_name" name="display_name"placeholder="Display Name" class="form-control"></div>
-                                <div class="form-group"><label for="description" class=" form-control-label">Description</label><textarea id="description" name="description" placeholder="Description" class="form-control"></textarea></div>
-                                
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+            <div class="card">
+                <div class="card-header"><strong>Update Project</strong></div>
+                <div class="card-body card-block">
+                <div class="form-group"><label for="name" class=" form-control-label">Name</label><input type="text" name="name" id="name" placeholder=" Name" class="form-control"value="{{$project->name}}"></div>
+                <div class="form-group"><label for="start_date" class=" form-control-label">Start Date</label><input type="date" name ="start_date"id="start_date" placeholder="Start Date" class="form-control"></div>
+                <div class="form-group"><label for="end_date" class=" form-control-label">End Date</label><input type="date" name="end_date" id="end_date" placeholder="Start Date" class="form-control"></div>
 
-                        </div>
+            </div>
+                <button type="submit" class="btn btn-primary">Submit</button></div>
 </form>
 </body>
 </html>
