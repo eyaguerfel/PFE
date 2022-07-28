@@ -45,6 +45,7 @@
         <!-- /#header -->
         <!-- Content -->
         @include('layout.script')
+        @include('flash-message')
 
 
         

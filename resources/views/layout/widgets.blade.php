@@ -8,6 +8,7 @@
                     </div>                                   
                     <div class="stat-content">                                        
                         <div class="text-left dib">
+
                             <div class="stat-text">$<span class="count">23569</span></div>
                             <div class="stat-heading">Done</div>                                      
                         </div>                                  
@@ -46,6 +47,7 @@
                     </div>
                     <div class="stat-content">
                         <div class="text-left dib">
+
                             <div class="stat-text"><span class="count"></span></div>
                             <div class="stat-heading">Projects</div>
                         </div>                                   
@@ -65,7 +67,9 @@
                     </div>
                     <div class="stat-content">
                         <div class="text-left dib">
-                            <div class="stat-text"><span class="count">2986</span></div>
+                                         
+
+                            <div class="stat-text"><span class="count"></span></div>
                             <div class="stat-heading">Users</div>
                         </div>       
                     </div>                                

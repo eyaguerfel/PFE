@@ -38,7 +38,15 @@
                     @include('layout.todoandchat')
                     <!-- /To Do and Live Chat -->
                     <!-- Calender Chart Weather  -->
+                    <?php
+                         $user=App\Http\Controllers\UserController::get_connected_user();
+                    ?>
+
+                @if ($user->role_id ==1)
                     @include('layout.calendar')
+                @else
+                    @include('layout.my_calender')
+                @endif
 
                     <!-- /#add-category -->
                 </div>

@@ -38,7 +38,18 @@
         <!-- /#header -->
         <!-- Content -->
         @include('layout.script')
+        @include('flash-message')
 
+        @if ($exception = Session::get('exception'))
+          <div class="alert alert-danger alert-block">
+              <button type="button" class="close" data-dismiss="alert">×</button>   
+              @if(isset($exception['display_name'][0]))
+                <strong>{{ $exception['display_name'][0] }}</strong>
+              @elseif(isset($exception['description'][0]))
+                <strong>{{ $exception['description'][0] }}</strong>
+              @endif
+          </div>
+        @endif
         <form action="{{route('rolecreate')}}" method="POST">
         @csrf
                         <div class="card">

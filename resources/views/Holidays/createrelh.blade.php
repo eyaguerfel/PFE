@@ -45,6 +45,21 @@
         <!-- /#header -->
         <!-- Content -->
         @include('layout.script')
+        @include('flash-message')
+
+        @if ($exception = Session::get('exception'))
+          <div class="alert alert-danger alert-block">
+              <button type="button" class="close" data-dismiss="alert">×</button>   
+              @if(isset($exception['name'][0]))
+                <strong>{{ $exception['name'][0] }}</strong>
+              @elseif(isset($exception['start_date'][0]))
+                <strong>{{ $exception['start_date'][0] }}</strong>
+              @elseif(isset($exception['end_date'][0]))
+                <strong>{{ $exception['end_date'][0] }}</strong>
+              @endif
+          </div>
+        @endif
+
         <form action="{{route('createrelholidays')}}" method="POST">
         @csrf
         <div class="card">

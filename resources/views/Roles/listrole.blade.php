@@ -62,6 +62,7 @@
             @include('layout.header')
         </header><!-- /header -->
         <!-- Header-->
+        @include('flash-message')
 
         <div class="breadcrumbs">
             <div class="breadcrumbs-inner">

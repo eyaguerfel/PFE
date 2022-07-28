@@ -20,8 +20,16 @@
 
     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
+    
+    <?php
+            $user=App\Http\Controllers\UserController::get_connected_user();
+        ?>
+    @include('layout.user_calender')
+        @if($user->role_id==1)
     <script src="assets/js/init/fullcalendar-init.js"></script>
-
+        @else
+    <script src="assets/js/init/calendar/fullcalendar.js"></script>
+        @endif
     <!--Local Stuff-->
     <script>
         jQuery(document).ready(function($) {

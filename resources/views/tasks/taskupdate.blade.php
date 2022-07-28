@@ -38,6 +38,7 @@
         <!-- /#header -->
         <!-- Content -->
         @include('layout.script')
+        @include('flash-message')
 
         
         <form  method="POST" action="{{route('taskedit',['task'=>$array['task']->id])}}" enctype="multipart/form-data">

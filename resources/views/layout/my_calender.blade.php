@@ -1,6 +1,4 @@
-<?php
-    $user=App\Http\Controllers\UserController::get_connected_user();
-?>
+
 <div class="row">
     <div class="card">
         <div class="card-body">
@@ -33,7 +31,7 @@
     </div>
                 <!-- /Calender Chart Weather -->
                 <!-- Modal - Calendar - Add New Event -->
-<div class="modal fade none-border" id="event-modal">
+<!--<div class="modal fade none-border" id="event-modal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -48,10 +46,10 @@
             </div>
         </div>
     </div>
-</div>
+</div> <-->
 <!-- /#event-modal -->
 <!-- Modal - Calendar - Add Category -->
-<div class="modal fade none-border" id="add-category">
+<!--<div class="modal fade none-border" id="add-category">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -86,7 +84,7 @@
             <button type="button" class="btn btn-danger waves-effect waves-light save-category" data-dismiss="modal">Save</button>
         </div>
     </div>
-    </div>
+    </div>-->
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="assets/js/project.js"></script>

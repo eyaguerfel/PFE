@@ -34,6 +34,16 @@ Route::get('/project/proj_h', 'App\Http\Controllers\ProjectController@proj_holid
 Route::get('/relholidays/get_rel','App\Http\Controllers\ReligiousHolidayController@get_religious_h',);
 Route::get('/natholidays/get_nat','App\Http\Controllers\NationalHolidayController@get_national_h',);
 
+Route::get('/task/get_mytask/{id}','App\Http\Controllers\TaskController@get_my_Task',);
+Route::get('/proj/get_myproj/{id}','App\Http\Controllers\ProjectController@get_project',);
+Route::get('/dash/proj_task/{id}', 'App\Http\Controllers\DashboardController@project_task',);
+
+
+Route::get('/holiday/holid', 'App\Http\Controllers\DashboardController@holidays',);
+
+Route::get('/calend/uc', 'App\Http\Controllers\DashboardController@user_calender',);
+
+
 Route::get('/project/get_proj','App\Http\Controllers\ProjectController@get_project',);
 
 

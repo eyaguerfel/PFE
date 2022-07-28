@@ -14,6 +14,8 @@
                 <li><a href ="{{route('userpage')}}"><i class="menu-icon fa fa-users"></i>Users</a></li>                            
                 <li><a href ="{{route('listtask')}}"><i class="menu-icon fa fa-tasks"></i>Tasks</a></li>
                 <li><a href ="{{route('listproject')}}"><i class="menu-icon fa fa-tasks"></i>Projects</a></li>
+                <li><a href ="{{route('listhours')}}"><i class="menu-icon fa fa-tasks"></i>Work hours</a></li>
+
                 <li class="menu-title">Holidays</li><!-- /.menu-title -->
                 <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -35,7 +35,7 @@
                     <div class="col-sm-4">
                         <div class="page-header float-left">
                             <div class="page-title">
-                                <h1>Tasks</h1>
+                                <h1>Work hours</h1>
                             </div>
                         </div>
                     </div>
@@ -43,8 +43,8 @@
                         <div class="page-header float-right">
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
-                                    <li><a href="{{route('createtask')}}">Add task</a></li>
-                                    <li class="active">List of tasks</li>
+                                    <li><a href="{{route('createhrs')}}">Add hours</a></li>
+                                    <li class="active">List of work hours</li>
                                 </ol>
                             </div>
                         </div>
@@ -67,32 +67,28 @@
                                     <thead>
                                         <tr>
                                             <th>ID</th>
-                                            <th>Name</th>
-                                            <th>Start Date</th>
-                                            <th>End Date</th>
+                                            <th>Start Hour</th>
+                                            <th>End Hour</th>
                                             <th>User</th>
-                                            <th>Project</th>
                                             <th>Actions</th>
 
                                             </tr>
                                     </thead>
                                     
                                     <tbody>
-                                    @foreach($tasks as $task)
+                                    @foreach($hours as $hour)
                                       <tr>
-                                      <td>{{$task->id}}</td>
-                                      <td>{{$task->name}}</td>
-                                      <td>{{$task->start_date}}</td>
-                                      <td>{{$task->end_date}}</td>
-                                      <td>{{$task->user}}</td>
-                                      <td>{{$task->project}}</td>
+                                      <td>{{$hour->id}}</td>
+                                      <td>{{$hour->start_hours}}</td>
+                                      <td>{{$hour->end_hours}}</td>
+                                      <td>{{$hour->user}}</td>
 
                                       <td style="text-align:center">
-                                          <a href="{{route('taskedit',['task'=>$task->id])}}" class="ti-pencil" ></a>
-                                          <a href="#" class="ti-trash" onclick="if(confirm('voulez vous vraiment supprimer cette tache?'))
-                                          {document.getElementById('form-{{$task->id}}').submit()}"></a>
+                                          <a href="{{route('hoursedit',['hour'=>$hour->id])}}" class="ti-pencil" ></a>
+                                          <a href="#" class="ti-trash" onclick="if(confirm('voulez vous vraiment supprimer ?'))
+                                          {document.getElementById('form-{{$hour->id}}').submit()}"></a>
 
-                                          <form id="form-{{$task->id}}" action="{{route('deletetask',['task'=>$task->id])}}" method="post">
+                                          <form id="form-{{$hour->id}}" action="{{route('deletehour',['hour'=>$hour->id])}}" method="post">
                                               @csrf
                                               <input type="hidden" name="_method" value="delete">
                                             </form>

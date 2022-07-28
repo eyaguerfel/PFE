@@ -22,16 +22,35 @@ class RoleController extends Controller
         $role= new Role();
         $role->display_name=$request->display_name;
         $role->description=$request->description;
+
+        $validator = \Validator::make ($request->all(), 
+        [
+            'display_name' => 'required',
+            'description' =>'required',
+        ],
+        [
+            'display_name' => 'Name is required',
+            'description' =>'description is required',
+        ]);
+        if ($validator->fails()) {
+            $obj = $validator->errors();
+            $array = $obj->toArray();
+            return back()->with('exception',$array);
+        }
         $role->save();
-        return 'Role created Successfully ';
-    }
+        if ($role)
+        return back()->with('success','Role created successfully!');
+    else
+        return back()->with('error','Faild!');    }
 
     public function delete (Role $role)
     {
         //$role= Role::find($id);
         $role-> delete();
-        return 'Role Deleted Successfully';
-    }
+        if ($role)
+        return back()->with('success','Role deleted successfully!');
+    else
+        return back()->with('error','Failed!');    }
 
     public function update (Request $request, $id)
     {
@@ -39,8 +58,10 @@ class RoleController extends Controller
         $role->display_name=$request->display_name;
         $role->description=$request->description;
         $role->save();
-        return 'Role updated Successfully ';
-    }
+        if ($role)
+        return back()->with('success','Role updated successfully!');
+    else
+        return back()->with('error','Failed!');    }
 
     public function findById ($id)
     {

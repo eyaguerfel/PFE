@@ -7,6 +7,7 @@ use App\Models\Project;
 use App\Models\ReligiousHolidays;
 use App\Models\NationalHolidays;
 use DB;
+use Validator;
 
 
 class ProjectController extends Controller
@@ -41,17 +42,33 @@ class ProjectController extends Controller
        $project->name=$request->name;
        $project->start_date=$request->start_date;
        $project->end_date=$request->end_date;
-       $project->save();
-      //return 'project created Successfully ';
+       
+       $validator = \Validator::make($request->all(), [
+        'name' => 'required',
+        'start_date'=>'required',
+        'end_date' =>'required',
 
-        return response()->json
-        (
-            [
-                "code"=>1,
-                "status"=>"success",
-                "message"=>"project created"
-            ]
-            );
+        ],
+        [
+            'name.* '=>'Name required',
+            'start_date.*'=>'start date required',
+            'end_date.*' =>'end date required',
+
+        ]);
+
+        if ($validator->fails()) {
+            $obj = $validator->errors();
+            $array = $obj->toArray();
+            return back()->with('exception',$array);
+        }
+
+       $project->save();
+       if ($project)
+            return back()->with('success','Project created successfully!');
+        else
+            return back()->with('error','Failed!');
+
+      
    }
 
    public function edit(Project $project){
@@ -66,22 +83,21 @@ class ProjectController extends Controller
         $project->end_date=$request->end_date;
         $project->save();
 
-        return 'updated';
-   }
+        if ($project)
+        return back()->with('success','Project updated successfully!');
+    else
+        return back()->with('error','Failed!');
+}
 
    public function delete ($id)
     {
         $project= Project::find($id);
         $project-> delete();
-        //return 'Deleted Successfully';
-        return response()->json
-        (
-            [
-                "code"=>1,
-                "status"=>"success",
-                "message"=>"project deleted"
-            ]
-            );
+        if ($project)
+        return back()->with('success','Project deleted successfully!');
+    else
+        return back()->with('error','Failed!');
+    
     }
 
     public function get_all_projects_start_date()

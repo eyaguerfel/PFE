@@ -23,6 +23,8 @@
         <!-- Header-->
         @include('layout.header')
         <!-- Header-->
+        @include('flash-message')
+
 
         <div class="breadcrumbs">
             <div class="breadcrumbs-inner">

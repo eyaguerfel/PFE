@@ -45,6 +45,20 @@
         <!-- /#header -->
         <!-- Content -->
         @include('layout.script')
+        @include('flash-message')
+        @if ($exception = Session::get('exception'))
+          <div class="alert alert-danger alert-block">
+              <button type="button" class="close" data-dismiss="alert">×</button>   
+              @if(isset($exception['first_name'][0]))
+                <strong>{{ $exception['first_name'][0] }}</strong>
+              @elseif(isset($exception['last_name'][0]))
+                <strong>{{ $exception['last_name'][0] }}</strong>
+              @elseif(isset($exception['email'][0]))
+                <strong>{{ $exception['email'][0] }}</strong>
+              @endif
+          </div>
+        @endif
+
         <form action="{{route('usercreate')}}" method="POST" enctype="multipart/form-data">
         @csrf
                         <div class="card">

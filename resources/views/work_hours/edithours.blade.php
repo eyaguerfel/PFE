@@ -39,27 +39,16 @@
         <!-- Content -->
         @include('layout.script')
         @include('flash-message')
+
         
-        @if ($exception = Session::get('exception'))
-          <div class="alert alert-danger alert-block">
-              <button type="button" class="close" data-dismiss="alert">×</button>   
-              @if(isset($exception['name'][0]))
-                <strong>{{ $exception['name'][0] }}</strong>
-              @elseif(isset($exception['start_date'][0]))
-                <strong>{{ $exception['start_date'][0] }}</strong>
-              @elseif(isset($exception['end_date'][0]))
-                <strong>{{ $exception['end_date'][0] }}</strong>
-              @endif
-          </div>
-        @endif
-        <form action="{{route('createtask')}}" method="POST">
+        <form  method="POST" action="{{route('hoursedit',['hour'=>$array['hour']->id])}}" enctype="multipart/form-data">
         @csrf
+        <input type="hidden" name="_method" value="put">
                         <div class="card">
-                            <div class="card-header"><strong>Create Task</strong></div>
+                            <div class="card-header"><strong>Update Hours</strong></div>
                             <div class="card-body card-block">
-                                <div class="form-group"><label for="name" class=" form-control-label">Name</label><input type="text" name="name" id="name" placeholder=" Name" class="form-control"></div>
-                                <div class="form-group"><label for="start_date" class=" form-control-label">Start Date</label><input type="date" name ="start_date"id="start_date" placeholder="Start Date" class="form-control"></div>
-                                <div class="form-group"><label for="end_date" class=" form-control-label">End Date</label><input type="date" name="end_date" id="end_date" placeholder="Start Date" class="form-control"></div>
+                                <div class="form-group"><label for="start_hours" class=" form-control-label">Start Date</label><input type="time" name ="start_hours" id="start_date" placeholder="Start Date" class="form-control"></div>
+                                <div class="form-group"><label for="end_hours" class=" form-control-label">End Date</label><input type="time" name="end_hours" id="end_date" placeholder="Start Date" class="form-control"></div>
                                 <div class="form-group"><label for="user" class=" form-control-label">User</label>
 
                                 <select id="user" name="user_id" class="form-control">
@@ -67,14 +56,6 @@
                                       <option value="{{$u->id}}">{{$u->first_name}}</option>
                                       @endforeach                       
                                   </select>
-                                  <div class="form-group"><label for="role" class=" form-control-label">Project</label>
-
-                                  <select id="project" name="project_id" class="form-control">
-                                      @foreach($array['project'] as $p)
-                                      <option value="{{$p->id}}">{{$p->name}}</option>
-                                      @endforeach                       
-                                  </select>
-                                
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
 

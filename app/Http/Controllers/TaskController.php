@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Project;
 use App\Models\Task;
-
+use Validator;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -73,16 +73,39 @@ class TaskController extends Controller
         $task->user_id=$request->user_id;
         $task->project_id=$request->project_id;
         $task->status=0;
+
+        $validator = \Validator::make($request->all(),
+        [
+            'name' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+
+        ],
+        [
+            'name' => 'name is required',
+            'start_date' => 'start date is required',
+            'end_date' => 'end date is required',
+
+        ]);
+        if ($validator->fails()) {
+            $obj = $validator->errors();
+            $array = $obj->toArray();
+            return back()->with('exception',$array);
+        }
         $task->save();
-        return 'task created Successfully ';
-    }
+        if ($task)
+            return back()->with('success','Task created successfully!');
+        else
+            return back()->with('error','Failed!');    }
 
     public function delete (Task $task)
     {
         
         $task-> delete();
-        return 'Task Deleted Successfully';
-    }
+        if ($task)
+        return back()->with('success','Task deleted successfully!');
+    else
+        return back()->with('error','Failed!');    }
 
     public function update (Request $request, $id)
     {
@@ -93,8 +116,10 @@ class TaskController extends Controller
         $task->user_id=$request->user_id;
         $task->project_id=$request->project_id;
         $task->save();
-        return 'Role updated Successfully ';
-    }
+        if ($task)
+        return back()->with('success','Task updated successfully!');
+    else
+        return back()->with('error','Failed!');    }
 
 
 }

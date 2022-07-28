@@ -21,6 +21,7 @@
         <!-- /#header -->
         <!-- Content -->
         @include('layout.script')
+        @include('flash-message')
 
 
 <form  method="POST" action="{{route('reledit',['religiousholiday'=>$religiousholiday->id])}}">

@@ -6,6 +6,8 @@ use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
+use Validator;
 
 
 class UserController extends Controller
@@ -34,14 +36,6 @@ class UserController extends Controller
     }
 
     public function create (){
-        /* $user=new User;
-         $user->first_name= $request->first_name;
-         $user->last_name= $request->last_name;
-         //$user->picture= $request->picture;
-         $user->email= $request->email;
-         $user->password= Hash::make($request->password);
-         $user->save();*/
- 
          $role=Role::all();
          return View('users.createuser')->with ('role',$role);
  
@@ -69,16 +63,55 @@ class UserController extends Controller
         }
         $user->email= $request->input('email');
         $user->password= Hash::make($request->input('password'));
+
+        // return $this->validate($request, [
+        //     'first_name' => 'required',
+        //     'last_name' => 'required',
+        //     'email' => 'email|unique:users|max:255'
+        // ],
+        // // second array of validation messages can be passed here
+        // [
+        //     'first_name.required' => 'Please provide a valid name!',
+        //     'last_name.required' => 'Please provide a valid name!',
+        //     'email.required' => 'Please provide a valid email!',
+        // ]);
+
+        $validator = \Validator::make($request->all(), [
+            'first_name'       => 'required', 
+            'last_name' => 'required',
+            'email'      => 'email|unique:users',
+        ], [
+            'first_name.*'       => 'Name Required',
+            'last_name.*'      => 'Unique Email is required',
+            'email' => 'Email format is invalide and should be unique',
+        ]);
+        
+        if ($validator->fails()) {
+            $obj = $validator->errors();
+            $array = $obj->toArray();
+            
+            // return back()->withInput()->withErrors($validator->errors());
+            return back()->with('exception',$array);
+        }
+
+
         $user->save();
-        return 'user created';
+        //$user = User::create($request);
+
+        if ($user)
+        return back()->with('success','User created successfully!');
+    else
+        return back()->with('error','Failed!');
     }
 
     public function delete (User $user)
     {
        // $user= User::find($id);
         $user->delete();
-        return 'User Deleted Successfully';
-
+        if ($user)
+        return back()->with('success','User deleted successfully!');
+    else
+        return back()->with('error','Failed!');
     }
 
     public function update (Request $request, User $user)
@@ -102,33 +135,15 @@ class UserController extends Controller
             // $data['picture']= $filename;
             $user->picture=$filename;
         }
+       
         $user->save();
-        return "updated";
-    }
+        if ($user)
+            return back()->with('success','User updated successfully!');
+        else
+            return back()->with('error','Failed!');   }
 
     
-    //$this->validate($request, [
-      //  'first_name'=> 'required',
-       // 'last_name'=> 'required',
-        //'picture'=> 'required',
-        //'email'=> 'required' // I'd add an "email" rule here too
-   // ]);
-/*
-    $user->update([
-        'first_name' => $request->first_name,
-        'last_name' => $request->last_name,
-       // 'picture' => $request->picture,
-
-        if()){
-            $file= $request->file('picture');
-            $filename= date('YmdHi').$file->getClientOriginalName();
-            $file-> move(public_path('public/user'), $filename);
-           // $data['picture']= $filename;
-            $user->picture=$filename;
-        }
-        'email' => $request->email,
-       ]); */
-
+    
 
     public function findById ($id)
     {
@@ -141,4 +156,5 @@ class UserController extends Controller
         $user= User::all();
         return $user;
     }
+    
 }

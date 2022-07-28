@@ -22,6 +22,7 @@
             @include('layout.header')
         </header><!-- /header -->
         <!-- Header-->
+        @include('flash-message')
 
 
 

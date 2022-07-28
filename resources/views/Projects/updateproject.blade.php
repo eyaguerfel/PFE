@@ -38,6 +38,7 @@
         <!-- /#header -->
         <!-- Content -->
         @include('layout.script')
+        @include('flash-message')
 
         <form action="{{route('projectedit',['project'=>$project->id])}}" method="POST">
         @csrf

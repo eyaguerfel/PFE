@@ -32,16 +32,41 @@ class ReligiousHolidayController extends Controller
         $religiousholiday->name=$request->name;
         $religiousholiday->start_date=$request->start_date;
         $religiousholiday->end_date=$request->end_date;
+        $validator = \Validator::make($request->all(), 
+        [
+            'name' => 'required',
+            'start-date'=>'required',
+            'start-end_date'=>'required',
+
+        ],
+        [
+            'name' => 'name is required',
+            'start-date'=>'start date is required',
+            'start-end_date'=>'end date is required',
+
+        ]);
+
+        if ($validator->fails()) 
+        {
+            $obj = $validator->errors();
+            $array = $obj->toArray();
+            return back()->with('exception',$array);
+        }
+
         $religiousholiday->save();
-        return 'Role created Successfully ';
-    }
+        if ($religiousholiday)
+            return back()->with('success','Holiday created successfully!');
+        else
+            return back()->with('error','Failed!');    }
 
     public function delete (ReligiousHolidays $religiousholiday)
     {
         //$religiousholiday= NationalHolidays::find($id);
         $religiousholiday-> delete();
-        return 'Deleted Successfully';
-    }
+        if ($religiousholiday)
+            return back()->with('success','Holiday deleted successfully!');
+        else
+            return back()->with('error','Failed!');    }
 
     public function update (Request $request,ReligiousHolidays $religiousholiday)
     {
@@ -49,8 +74,10 @@ class ReligiousHolidayController extends Controller
         $religiousholiday->start_date=$request->start_date;
         $religiousholiday->end_date=$request->end_date;
         $religiousholiday->save();
-        return 'updated Successfully ';
-    }
+        if ($religiousholiday)
+            return back()->with('success','Holiday updated successfully!');
+        else
+            return back()->with('error','Failed!');    }
 
     public function get_religious_h()
     {

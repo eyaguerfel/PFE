@@ -9,6 +9,7 @@ use App\Http\Controllers\ImageUploadController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\WorkhoursController;
 
 
 
@@ -72,6 +73,15 @@ Route:: get("/task/{task}",[TaskController::class,"edit"])->name('taskedit');
 Route:: put("/task/{task}",[TaskController::class,"update"])->name('taskupdate');
 Route:: delete("/task/{task}",[TaskController::class,"delete"])->name('deletetask');
 Route:: get("/my_task",[TaskController::class,"my_task"])->name('mytask');
+
+//workHours
+
+Route::get("/hours", [WorkhoursController::class,"allHours"])->name('listhours');
+Route::get("/hour/create",[WorkhoursController::class,"create"])->name('createhrs');
+Route:: post("/hour/create",[WorkhoursController::class,"store"])->name('storehour');
+Route:: get("/hour/{hour}",[WorkhoursController::class,"edit"])->name('hoursedit');
+Route:: put("/hour/{hour}",[WorkhoursController::class,"update"])->name('hourupdate');
+Route:: delete("/hour/{hour}",[WorkhoursController::class,"delete"])->name('deletehour');
 
 //calander for a normal user
 Route::get("/user_calender", [DashboardController::class,'user_calender']);
